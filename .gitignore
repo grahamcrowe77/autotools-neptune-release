@@ -1,0 +1,33 @@
+*~
+
+# Artifacts created after running:
+# ./bootstrap.sh
+Makefile.in
+aclocal.m4
+autom4te.cache/
+build-aux/
+configure
+
+# Artifacts created after running:
+# ./configure
+Makefile
+config.*
+*.rel
+*.sh
+
+# Artifacts created after running:
+# make
+*.boot
+*.script
+erts-*/
+
+# Artifacts created after running:
+# make check
+
+# Artifacts created after running:
+# make install DESTDIR=$PWD/inst && make installcheck DESTDIR=$PWD/inst
+inst/
+*.tar.gz
+
+# Artifacts created after running:
+# make dist && make distcheck
