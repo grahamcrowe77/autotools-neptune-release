@@ -27,10 +27,12 @@ jobs:
 
       - name: Install neptune
         run: |
-          git clone --depth=1 https://github.com/grahamcrowe77/autotools-neptune.git neptune
-          pushd neptune
-          ./bootstrap.sh && ./configure --prefix=/usr
-          make V=1 && sudo make install V=1
+          wget https://github.com/grahamcrowe77/autotools-neptune/releases/download/0.6.0/neptune-0.6.0.tar.gz
+          tar xf neptune-0.6.0.tar.gz
+          pushd neptune-0.6.0
+          ./configure --prefix=/usr
+          make V=1
+          sudo make install V=1
           popd
 
       - name: Bootstrap
@@ -49,7 +51,3 @@ jobs:
       - name: Test
         run:
           make check V=1 TESTSUITEFLAGS=-v
-
-      - name: Install
-        run:
-          make install DESTDIR=$PWD/inst V=1
