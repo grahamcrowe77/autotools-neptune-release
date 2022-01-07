@@ -1,0 +1,39 @@
+# This is a basic workflow to help you get started with Actions
+
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: test all make targets
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Bootstrap
+        run: |
+          set -xv
+          erl +B -noinput -eval 'io:put_chars(erlang:system_info(system_version)),halt(0).'
+          sudo apt-get update -y
+          sudo apt-get install -y xsltproc fop
+          ./bootstrap.sh
+          
+      - name: Configure
+        run:
+          ./configure --prefix=/usr
+
+      - name: Build
+        run:
+          make V=1
+
+      - name: Test
+        run:
+          make check V=1 TESTSUITEFLAGS=-v
