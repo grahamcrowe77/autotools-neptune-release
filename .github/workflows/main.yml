@@ -29,7 +29,7 @@ jobs:
         run: |
           git clone --depth=1 https://github.com/grahamcrowe77/autotools-neptune.git neptune
           pushd neptune
-          ./bootstrap.sh && ./configure --prefix=/usr --libdir=/usr/lib
+          ./bootstrap.sh && ./configure --prefix=/usr
           make V=1 && sudo make install V=1
           popd
 
