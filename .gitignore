@@ -27,6 +27,8 @@ erts-*/
 # Artifacts created after running:
 # make install DESTDIR=$PWD/inst && make installcheck DESTDIR=$PWD/inst
 inst/
+lib/
+releases/
 *.tar.gz
 
 # Artifacts created after running:

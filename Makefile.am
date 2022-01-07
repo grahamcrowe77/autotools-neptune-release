@@ -1,17 +1,14 @@
 ACLOCAL_AMFLAGS = -I m4
 
+releases:
+lib: $(PACKAGE_NAME).tar.gz
+	tar xf $<
+
+$(PACKAGE_NAME).tar.gz: $(PACKAGE_NAME).boot
+	$(ERL) -noshell -run systools make_tar $(PACKAGE_NAME) -s erlang halt
+
 $(PACKAGE_NAME).script $(PACKAGE_NAME).boot: $(PACKAGE_NAME).rel
 	$(ERL) -noshell -s systools make_script $(PACKAGE_NAME) -s erlang halt
-
-CLEANFILES = \
-  neptune.boot \
-  neptune.script \
-  neptune.tar.gz
-
-clean-local:
-	rm -rf erts-$(ERLANG_ERTS_VER)
-	rm -rf releases
-	rm -rf lib
 
 pkgbindir=$(pkgdatadir)/erts-$(ERLANG_ERTS_VER)/bin
 
@@ -38,11 +35,12 @@ install-data-local: lib releases $(PACKAGE_NAME).config $(PACKAGE_NAME).sh
 	chmod +x $(DESTDIR)$(bindir)/$(PACKAGE_NAME).sh
 	chmod +x $(DESTDIR)$(pkgbindir)/*
 
-releases:
-lib: $(PACKAGE_NAME).tar.gz
-	tar xf $<
+CLEANFILES = \
+  neptune.boot \
+  neptune.script \
+  neptune.tar.gz
 
-$(PACKAGE_NAME).tar.gz:
-	$(ERL) -noshell -run systools make_tar $(PACKAGE_NAME) -s erlang halt
-
-
+clean-local:
+	rm -rf erts-$(ERLANG_ERTS_VER)
+	rm -rf releases
+	rm -rf lib
