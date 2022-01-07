@@ -20,8 +20,16 @@ To test building in the source tree:
 ./configure
 make
 make check
-#wip make install DESTDIR=$PWD/inst
+make install DESTDIR=$PWD/inst
+#wip make installcheck DESTDIR=$PWD/inst
 make maintainer-clean
+```
+
+Temporary test on staged installation:
+```
+make install DESTDIR=$PWD/inst
+ERL_ROOTDIR=$PWD/inst/usr/local/bin/neptune inst/usr/local/bin/neptune-release.sh
+pgrep erl_child_setup | xargs kill -9
 ```
 
 Linux Distro Erlang installations are usually installed with prefix=/usr. To

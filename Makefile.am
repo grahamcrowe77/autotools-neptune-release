@@ -15,10 +15,6 @@ $(PACKAGE_NAME).script $(PACKAGE_NAME).boot: $(PACKAGE_NAME).rel
 bin_SCRIPTS = \
   bin/$(PACKAGE_NAME).sh
 
-#bin/$(PACKAGE_NAME).sh: bin/$(PACKAGE_NAME).sh.in
-#	sed -e "s#@DESTDIR@#$(DESTDIR)#g" $< > $@
-#	chmod +x $@
-
 pkgbindir=$(pkgdatadir)/erts-$(ERLANG_ERTS_VER)/bin
 
 ERTS_MODS = \
@@ -42,15 +38,15 @@ $(top_builddir)/releases/$(PACKAGE_VERSION)/$(PACKAGE_NAME).config: $(PACKAGE_NA
 $(top_builddir)/erts-$(ERLANG_ERTS_VER)/bin/%: $(ERLANG_ROOT_DIR)/erts-$(ERLANG_ERTS_VER)/bin/%
 	$(MKDIR_P) $(@D) && cp -p $< $@
 
-#install-data-local: lib releases $(PACKAGE_NAME).config bin/$(PACKAGE_NAME).sh
-#	$(MKDIR_P) $(DESTDIR)$(pkgdatadir)
-#	cp -vr lib $(DESTDIR)$(pkgdatadir)
-#	cp -vr releases $(DESTDIR)$(pkgdatadir)
-#	cp -v $(PACKAGE_NAME).config \
-#	  $(DESTDIR)$(pkgdatadir)/releases/$(PACKAGE_VERSION)
-#	chmod +x $(DESTDIR)$(pkgbindir)/*
-
 all-local: lib
+
+install-data-local:
+	$(MKDIR_P) $(DESTDIR)$(pkgdatadir)
+	cp -vr lib $(DESTDIR)$(pkgdatadir)
+	cp -vr releases $(DESTDIR)$(pkgdatadir)
+	cp -v $(PACKAGE_NAME).config \
+	  $(DESTDIR)$(pkgdatadir)/releases/$(PACKAGE_VERSION)
+	chmod +x $(DESTDIR)$(pkgbindir)/*
 
 CLEANFILES = \
   neptune-release.boot \
