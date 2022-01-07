@@ -18,12 +18,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Bootstrap
+      - name: Install neptune
         run: |
           set -xv
           erl +B -noinput -eval 'io:put_chars(erlang:system_info(system_version)),halt(0).'
-          sudo apt-get update -y
-          sudo apt-get install -y xsltproc fop
+          git clone --depth=1 https://github.com/grahamcrowe77/autotools-neptune.git neptune
+          cd neptune && ./bootstrap.sh && ./configure --prefix=/usr
+          cd neptune && make V=1 && sudo make install V=1
+
+      - name: Bootstrap
+        run: |
+          set -xv
           ./bootstrap.sh
           
       - name: Configure
