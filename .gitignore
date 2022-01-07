@@ -13,13 +13,14 @@ configure
 Makefile
 config.*
 *.rel
-*.sh
+bin/*.sh.in
 
 # Artifacts created after running:
 # make
 *.boot
 *.script
 erts-*/
+bin/*.sh
 
 # Artifacts created after running:
 # make check

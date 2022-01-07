@@ -36,7 +36,7 @@ pkgdatadir="${bindir}/neptune"
 AC_SUBST([pkgdatadir])
 
 AC_CONFIG_FILES([Makefile ${PACKAGE_NAME}.rel])
-AC_CONFIG_FILES([neptune-release.sh], [chmod +x neptune-release.sh])
+AC_CONFIG_FILES([bin/neptune-release.sh], [chmod +x bin/neptune-release.sh])
 AC_OUTPUT
 cat << EOF
 ----------------------------------------------------------------------
