@@ -1,5 +1,7 @@
 ACLOCAL_AMFLAGS = -I m4
 
+SUBDIRS = . tests
+
 releases:
 lib: $(PACKAGE_NAME).tar.gz
 	tar xf $<

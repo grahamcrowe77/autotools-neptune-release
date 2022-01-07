@@ -19,7 +19,8 @@ To test building in the source tree:
 ```bash
 ./configure
 make
-make install DESTDIR=$PWD/inst
+make check
+#wip make install DESTDIR=$PWD/inst
 make maintainer-clean
 ```
 

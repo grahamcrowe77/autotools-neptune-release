@@ -1,0 +1,12 @@
+AT_BANNER([Neptune Release Start])
+AT_SETUP([neptune-start])
+AT_KEYWORDS([start])
+rm /tmp/erlang.* /tmp/run_erl.log
+echo ${abs_top_builddir}
+AT_CHECK([ERL_ROOTDIR=${abs_top_builddir} ${abs_top_builddir}/bin/neptune-release.sh],[0],[ignore])
+sleep 6
+AT_CHECK([grep "Hi there from neptune!" /tmp/erlang.log.*],[0],[ignore])
+sleep 6
+AT_CHECK([grep "Hello from neptune!" /tmp/erlang.log.*],[0],[ignore])
+pgrep erl_child_setup | xargs kill -9
+AT_CLEANUP

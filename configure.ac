@@ -6,6 +6,8 @@ AM_INIT_AUTOMAKE([foreign subdir-objects])
 AM_SILENT_RULES([yes])
 
 AC_CONFIG_MACRO_DIRS([m4])
+AC_CONFIG_TESTDIR([tests])
+AC_CONFIG_FILES([tests/Makefile tests/atlocal])
 
 # Checks for programs.
 AC_ERLANG_NEED_ERL
