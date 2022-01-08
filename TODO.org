@@ -1,14 +1,9 @@
 * TODO Improve check
 Currently system writes to log every 5 seconds. Make this an
 application environment variable that can be set in the config.
-* TODO install target with DESTDIR
-      - name: Install
-        run:
-          make install DESTDIR=$PWD/inst V=1
-The above workflow step failed, something related to the ERTS binaries
-not being present at the expected location.
 * TODO installcheck target with DESTDIR
 This requires setting ERL_ROOTDIR accordingly in the autotest suite.
 * TODO install target without DESTDIR
 * TODO installcheck target without DESTDIR
 * TODO Add release documentation
+** TODO Document release build principles
