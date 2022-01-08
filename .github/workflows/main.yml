@@ -51,3 +51,8 @@ jobs:
       - name: Test
         run:
           make check V=1 TESTSUITEFLAGS=-v
+
+      - name: Install (DESTDIR)
+        run: |
+          make install DESTDIR=$PWD/inst V=1 TESTSUITEFLAGS=-v
+          make installcheck DESTDIR=$PWD/inst V=1 TESTSUITEFLAGS=-v
