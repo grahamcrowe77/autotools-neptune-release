@@ -46,6 +46,8 @@ install-data-local:
 	cp -vr releases $(DESTDIR)$(pkgdatadir)
 	cp -v $(PACKAGE_NAME).config \
 	  $(DESTDIR)$(pkgdatadir)/releases/$(PACKAGE_VERSION)
+
+install-data-hook:
 	chmod +x $(DESTDIR)$(pkgbindir)/*
 
 CLEANFILES = \
