@@ -34,7 +34,7 @@ if test "x${prefix}" == "xNONE"; then
 fi
 exec_prefix="${prefix}"
 bindir="${exec_prefix}/bin"
-pkgdatadir="${bindir}/neptune"
+pkgdatadir="${bindir}/${PACKAGE_NAME}"
 AC_SUBST([pkgdatadir])
 
 AC_CONFIG_FILES([Makefile ${PACKAGE_NAME}.rel])
