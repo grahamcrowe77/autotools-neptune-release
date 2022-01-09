@@ -22,14 +22,13 @@ jobs:
         run: |
           set -xv
           erl +B -noinput -eval 'io:put_chars(erlang:system_info(system_version)),halt(0).'
-          sudo apt-get update -y
-          sudo apt-get install -y xsltproc fop
 
       - name: Install neptune
         run: |
-          wget https://github.com/grahamcrowe77/autotools-neptune/releases/download/0.6.0/neptune-0.6.0.tar.gz
-          tar xf neptune-0.6.0.tar.gz
-          pushd neptune-0.6.0
+          PACKAGE_VERSION=0.7.0
+          wget https://github.com/grahamcrowe77/autotools-neptune/releases/download/$PACKAGE_VERSION/neptune-$PACKAGE_VERSION.tar.gz
+          tar xf neptune-$PACKAGE_VERSION.tar.gz
+          pushd neptune-$PACKAGE_VERSION
           ./configure --prefix=/usr
           make V=1
           sudo make install V=1
